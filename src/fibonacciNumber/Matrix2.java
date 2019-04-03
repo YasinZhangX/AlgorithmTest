@@ -1,60 +1,89 @@
 package fibonacciNumber;
 
-import java.util.Map;
-
 /**
  * @author Yasin Zhang
  */
 public class Matrix2 {
 
-    private int l1;
-    private int r1;
-    private int l2;
-    private int r2;
+    private int m11;
+    private int m12;
+    private int m21;
+    private int m22;
 
-    public Matrix2(int l1, int r1, int l2, int r2) {
-        this.l1 = l1;
-        this.r1 = r1;
-        this.l2 = l2;
-        this.r2 = r2;
+    Matrix2() {
+        this.m11 = 0;
+        this.m12 = 0;
+        this.m21 = 0;
+        this.m22 = 0;
+    }
+
+    public Matrix2(int m11, int m12, int m21, int m22) {
+        this.m11 = m11;
+        this.m12 = m12;
+        this.m21 = m21;
+        this.m22 = m22;
+    }
+
+    public static Matrix2 mul(Matrix2 A, Matrix2 B) {
+        Matrix2 result = new Matrix2();
+        result.setM11(A.getM11()*B.getM11() + A.getM12()*B.getM21());
+        result.setM12(A.getM11()*B.getM12() + A.getM12()*B.getM22());
+        result.setM21(A.getM21()*B.getM11() + A.getM22()*B.getM21());
+        result.setM22(A.getM21()*B.getM12() + A.getM22()*B.getM22());
+        return result;
     }
 
     @Override
     public String toString() {
-        return "[ " + l1 + " " + r1 + " ]" + "\r\n" +
-               "[ " + l2 + " " + r2 + " ]";
+        return "[ " + m11 + " " + m12 + " ]" + "\r\n" +
+               "[ " + m21 + " " + m22 + " ]";
     }
 
-    public int getL1() {
-            return l1;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() == Matrix2.class) {
+            Matrix2 tmp = (Matrix2) obj;
+            return isEqual(tmp);
         }
 
-        public void setL1(int l1) {
-            this.l1 = l1;
-        }
+        return false;
+    }
 
-        public int getR1() {
-            return r1;
-        }
+    private boolean isEqual(Matrix2 m) {
+        return this.m11 == m.getM11() && this.m12 == m.getM12() &&
+               this.m21 == m.getM21() && this.m22 == m.getM22();
+    }
 
-        public void setR1(int r1) {
-            this.r1 = r1;
-        }
+    public int getM11() {
+            return m11;
+    }
 
-        public int getL2() {
-            return l2;
-        }
+    public void setM11(int m11) {
+            this.m11 = m11;
+    }
 
-        public void setL2(int l2) {
-            this.l2 = l2;
-        }
+    public int getM12() {
+            return m12;
+    }
 
-        public int getR2() {
-            return r2;
-        }
+    public void setM12(int m12) {
+            this.m12 = m12;
+    }
 
-        public void setR2(int r2) {
-            this.r2 = r2;
-        }
+    public int getM21() {
+            return m21;
+    }
+
+    public void setM21(int m21) {
+            this.m21 = m21;
+    }
+
+    public int getM22() {
+            return m22;
+    }
+
+    public void setM22(int m22) {
+            this.m22 = m22;
+    }
 
 }
